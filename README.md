@@ -50,6 +50,6 @@ We welcome contributions to improve ReliefLink! Feel free to fork the repository
 
 Live Demo
 
-Check out the live project: ReliefLink
+Check out the live project: [Live Application](https://relieflink-su8c.onrender.com)
 
 Made  by Team Cypher Seekers
