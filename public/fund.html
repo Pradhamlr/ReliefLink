@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund Distribution Blockchain</title>
+  <style>
+    /* Global Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #faf3e0; /* Light peachy background */
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Heading Styles */
+    h1, h2, h3 {
+      color: #ff8500; /* Orange color for headings */
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    /* Section Layout */
+    .section {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 40px;
+    }
+
+    .section div {
+      text-align: center;
+      width: 30%;
+    }
+
+    /* Fund Donation Options */
+    .donate-options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .donate-option {
+      background-color: #e0f7fa;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 30%;
+      text-align: center;
+    }
+
+    .donate-option:hover {
+      background-color: #b2ebf2;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .donate-option h3 {
+      color: #00796b;
+    }
+
+    .donate-option p {
+      color: #00695c;
+      font-weight: bold;
+    }
+
+    /* Transactions Section */
+    .transactions {
+      margin-bottom: 60px; /* Increased margin bottom */
+    }
+
+    .transactions ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .transactions li {
+      background-color: #f5f5f5;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+    }
+
+    /* INR Section */
+    .inr-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .inr-box {
+      background-color: #ffe0b2;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 30%;
+      margin-right: 20px; /* Added spacing between boxes */
+    }
+
+    .inr-box:last-child {
+      margin-right: 0;
+    }
+
+    .inr-box h3 {
+      color: #ff8500;
+    }
+
+    .inr-box p {
+      color: #ff5722;
+      font-size: 1.2rem;
+    }
+
+    /* Button Styling */
+    .donate-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #ff8500; /* Orange background for the button */
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 30px;
+    }
+
+    .donate-button:hover {
+      background-color: #e65100; /* Darker shade on hover */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .donate-options {
+        flex-direction: column;
+      }
+
+      .inr-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .inr-box {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+
+      .donate-option {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fund Distribution via Blockchain</h1>
+
+    <div class="section">
+      <div>
+        <h3>Donators</h3>
+        <p id="donators">Total Donators: 15</p>
+      </div>
+      <div>
+        <h3>Total Fund</h3>
+        <p id="total-fund">Total Fund: 100.00 $ETH</p>
+      </div>
+      <div>
+        <h3>Victims</h3>
+        <p id="victims">Total Victims: 55</p>
+      </div>
+    </div>
+
+    <h2>Donate Now</h2>
+    <div class="donate-options">
+      <div class="donate-option" onclick="simulateDonation('Gold', 1)">
+        <h3>Gold</h3>
+        <p>1 $ETH</p>
+      </div>
+      <div class="donate-option" onclick="simulateDonation('Diamond', 2)">
+        <h3>Diamond</h3>
+        <p>2 $ETH</p>
+      </div>
+      <div class="donate-option" onclick="simulateDonation('Platinum', 5)">
+        <h3>Platinum</h3>
+        <p>5 $ETH</p>
+      </div>
+    </div>
+
+    <div class="transactions">
+      <h2>Recent Transactions</h2>
+      <ul id="transactions">
+        <li>1 $ETH donated by Gold Anonymous User</li>
+        <li>2 $ETH donated by Diamond Anonymous User</li>
+        <li>5 $ETH donated by Platinum Anonymous User</li>
+      </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    
+    <div class="inr-section">
+      <div class="inr-box">
+        <h3>Gold Donation (1 $ETH)</h3>
+        <p id="gold-inr">₹0</p>
+      </div>
+      <div class="inr-box">
+        <h3>Diamond Donation (2 $ETH)</h3>
+        <p id="diamond-inr">₹0</p>
+      </div>
+      <div class="inr-box">
+        <h3>Platinum Donation (5 $ETH)</h3>
+        <p id="platinum-inr">₹0</p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="inr-section">
+      <div class="inr-box">
+        <h3>Total Fund in INR</h3>
+        <p id="total-inr">₹0</p>
+      </div>
+      <div class="inr-box">
+        <h3>Average per Victim in INR</h3>
+        <p id="average-inr">₹0</p>
+      </div>
+    </div>
+
+    <button class="donate-button" onclick="simulateDonation()">Simulate Donation</button>
+
+    <!-- Blockchain Transactions Display -->
+    <h2>Blockchain Transactions</h2>
+    <ul id="blockchain-transactions">
+      <!-- Example: Transaction ID: "0x1234567890abcdef", Amount: "0.58 ETH", From: "Gold Anonymous User", To: "0xReliefFundAddress", Timestamp: "2025-02-07T12:34:56Z" -->
+    </ul>
+  </div>
+
+  <script>
+    const ethToInrRate = 244998.84;
+    let donatorsCount = 15;
+    let totalFund = 100.00;
+    let victimsCount = 3;
+    const reliefFundAddress = "0x1234567890abcdef1234567890abcdef12345678"; // Example address
+
+    function simulateDonation(level = '', amount = 0) {
+      donatorsCount += 1;
+      victimsCount += 1;
+      const donationAmount = amount || (Math.random() * 5).toFixed(2);
+      totalFund = (parseFloat(totalFund) + parseFloat(donationAmount)).toFixed(2);
+
+      document.getElementById("donators").textContent = `Total Donators: ${donatorsCount}`;
+      document.getElementById("total-fund").textContent = `Total Fund: ${totalFund} $ETH`;
+
+      const transactionsList = document.getElementById("transactions");
+      const li = document.createElement("li");
+      
+      // Set the sender as anonymous
+      const anonymousSender = `${level || ''} Anonymous User`;
+      
+      li.textContent = `${donationAmount} $ETH donated by ${anonymousSender}`;
+      transactionsList.appendChild(li);
+
+      // Blockchain Transaction Simulation
+      const blockchainTransactionList = document.getElementById("blockchain-transactions");
+      const transactionLi = document.createElement("li");
+      const transactionID = `0x${Math.random().toString(36).substr(2, 16)}`;
+      const timestamp = new Date().toISOString();
+      transactionLi.textContent = `Transaction ID: ${transactionID}, Amount: ${donationAmount} ETH, From: ${anonymousSender}, To: ${reliefFundAddress}, Timestamp: ${timestamp}`;
+      blockchainTransactionList.appendChild(transactionLi);
+
+      updateINRValues();
+    }
+
+    function updateINRValues() {
+      const totalFundInInr = (totalFund * ethToInrRate).toFixed(2);
+      document.getElementById("gold-inr").textContent = `₹${(1 * ethToInrRate).toFixed(2)}`;
+      document.getElementById("diamond-inr").textContent = `₹${(2 * ethToInrRate).toFixed(2)}`;
+      document.getElementById("platinum-inr").textContent = `₹${(5 * ethToInrRate).toFixed(2)}`;
+      document.getElementById("total-inr").textContent = `₹${totalFundInInr}`;
+      document.getElementById("average-inr").textContent = `₹${(totalFundInInr / victimsCount).toFixed(2)}`;
+    }
+
+    updateINRValues();
+  </script>
+</body>
+</html>

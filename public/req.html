@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relief Resource Request Form</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ffb88c, #ff9b73);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Form Container */
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        /* Header */
+        .container h1 {
+            text-align: center;
+            color: #ff8500; /* Orange color */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Labels */
+        label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Inputs and Select */
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #ff9b73;
+            box-shadow: 0 0 5px rgba(255, 155, 115, 0.4);
+        }
+
+        /* Checkbox and Radio Buttons */
+        input[type="checkbox"], input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ff8500;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #e67300;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            input, select, textarea {
+                font-size: 13px;
+            }
+
+            button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Relief Resource Request Form</h1>
+
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email">
+
+            <label for="address">Address/Location:</label>
+            <input type="text" id="address" required>
+
+            <label for="peopleCount">Number of People in Household:</label>
+            <input type="number" id="peopleCount" min="1" required>
+
+            <h3>Resource Request</h3>
+
+            <label for="food">Food Needed:</label>
+            <select id="food">
+                <option value="ready_meals">Ready-to-eat meals</option>
+                <option value="canned_food">Canned goods</option>
+                <option value="dry_food">Dry food (e.g. rice, lentils)</option>
+                <option value="baby_food">Baby food</option>
+            </select>
+
+            <label for="foodQty">Quantity:</label>
+            <input type="number" id="foodQty" min="1" required>
+
+            <label for="waterQty">Water Needed (in Liters):</label>
+            <input type="number" id="waterQty" min="1" required>
+
+            <label for="waterStorage">
+                <input type="checkbox" id="waterStorage"> Do you need containers for water?
+            </label>
+
+            <h4>Emergency First Aid</h4>
+            <label>Do you need emergency medical supplies?</label>
+            <input type="radio" name="firstAid" value="yes"> Yes
+            <input type="radio" name="firstAid" value="no"> No
+
+            <label for="firstAidItems">Specific items needed:</label>
+            <textarea id="firstAidItems"></textarea>
+
+            <h4>Medicines</h4>
+            <label for="medicines">Medicines Needed:</label>
+            <textarea id="medicines"></textarea>
+
+            <label for="allergies">Allergies/Health Concerns:</label>
+            <textarea id="allergies"></textarea>
+
+            <h4>Clothing</h4>
+            <label for="clothing">Clothing Needed:</label>
+            <select id="clothing">
+                <option value="men">Men’s</option>
+                <option value="women">Women’s</option>
+                <option value="children">Children’s</option>
+                <option value="babies">Babies</option>
+                <option value="winter">Winter wear</option>
+            </select>
+
+            <label for="clothingSize">Size:</label>
+            <input type="text" id="clothingSize">
+
+            <h4>Other Items</h4>
+            <label for="otherNeeds">Other Needs:</label>
+            <textarea id="otherNeeds"></textarea>
+
+            <h4>Additional Information</h4>
+            <label>Urgency of Request:</label>
+            <input type="radio" name="urgency" value="immediate"> Immediate
+            <input type="radio" name="urgency" value="24h"> Within 24 hours
+            <input type="radio" name="urgency" value="48h"> Within 48 hours
+            <input type="radio" name="urgency" value="flexible"> Flexible
+
+            <label for="specialRequests">Special Instructions/Requests:</label>
+            <textarea id="specialRequests"></textarea>
+
+            <h4>Confirmation</h4>
+            <label>
+                <input type="checkbox" required> I agree to the terms and conditions.
+            </label>
+
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+
+</body>
+</html>

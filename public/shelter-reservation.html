@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelter Reservation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fbe9d7, #f6dec1);;;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background:#f6b05b;
+            color: rgb(0, 0, 0);
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        .shelter-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .shelter {
+            background:#f6b05b;
+            border-radius: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: left;
+        }
+        .shelter img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #ccc;
+        }
+        .shelter-info {
+            padding: 20px;
+        }
+        .shelter-info h3 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+        .shelter-info p {
+            margin: 10px 0;
+        }
+        .reserve-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #002266;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .reserve-btn:hover {
+            background-color: #218838;
+        }
+        .reservation-form {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .reservation-form input,
+        .reservation-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .reservation-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #cb7a17;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .reservation-form button:hover {
+            background-color: #a7a489;
+        }
+        .reservation-result {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Shelter Reservation System</h1>
+    </header>
+
+    <main>
+        <h2>Available Shelters for Reservation</h2>
+        <ul class="shelter-list">
+            <!-- Shelter 1 -->
+            <li class="shelter">
+                <img src="https://www.mappls.com/place/GKXT2D_1691432134044_0.jpeg" alt="Rajagiri Hospital">
+                <div class="shelter-info">
+                    <h3>Rajagiri Hospital</h3>
+                    <p>Vacancies: <span id="vacancy1"></span></p>
+                    <button class="reserve-btn" onclick="showForm(1)">Reserve</button>
+                </div>
+            </li>
+            <!-- Shelter 2 -->
+            <li class="shelter">
+                <img src="https://meskerala.com/wp-content/uploads/2014/11/28-EDATHALA-Training-College.jpg" alt="MES B.Ed College">
+                <div class="shelter-info">
+                    <h3>MES B.Ed College</h3>
+                    <p>Vacancies: <span id="vacancy2"></span></p>
+                    <button class="reserve-btn" onclick="showForm(2)">Reserve</button>
+                </div>
+            </li>
+            <!-- Shelter 3 -->
+            <li class="shelter">
+                <img src="https://meskerala.com/wp-content/uploads/2014/11/30.jpg" alt="MES Central School">
+                <div class="shelter-info">
+                    <h3>MES Central School</h3>
+                    <p>Vacancies: <span id="vacancy3"></span></p>
+                    <button class="reserve-btn" onclick="showForm(3)">Reserve</button>
+                </div>
+            </li>
+            <!-- Shelter 4 -->
+            <li class="shelter">
+                <img src="https://storage.googleapis.com/educrib/colleges/uploads/Rajagiri%20College%20of%20Social%20Sciences,%20Kalamassery%20Featured%20Pic.jpg" alt="Rajagiri College of Social Sciences">
+                <div class="shelter-info">
+                    <h3>Rajagiri College of Social Sciences</h3>
+                    <p>Vacancies: <span id="vacancy4"></span></p>
+                    <button class="reserve-btn" onclick="showForm(4)">Reserve</button>
+                </div>
+            </li>
+            <!-- Shelter 5 -->
+            <li class="shelter">
+                <img src="https://colleges18.s3.ap-south-1.amazonaws.com/Al_Ameen_College_Edathala_ACE_Ernakulam_1_5ef6d6eb4a.jpg" alt="Al-Ameen Public School">
+                <div class="shelter-info">
+                    <h3>Al-Ameen Public School</h3>
+                    <p>Vacancies: <span id="vacancy5"></span></p>
+                    <button class="reserve-btn" onclick="showForm(5)">Reserve</button>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Reservation Form (Hidden by Default) -->
+        <div class="reservation-form" id="reservationForm">
+            <h3>Reservation Form</h3>
+            <label for="peopleCount">Number of People (1-9):</label>
+            <input type="number" id="peopleCount" min="1" max="9" required>
+
+            <div id="reservationFormFields"></div>
+
+            <button onclick="submitReservation()">Submit Reservation</button>
+        </div>
+
+        <!-- Reservation Result -->
+        <div class="reservation-result" id="reservationResult"></div>
+
+    </main>
+
+    <script>
+        // Randomly assign vacancy numbers
+        const shelters = [
+            "Rajagiri Hospital",
+            "MES B.Ed College",
+            "MES Central School",
+            "Rajagiri College of Social Sciences",
+            "Al-Ameen Public School"
+        ];
+        const vacancies = [];
+
+        for (let i = 1; i <= 5; i++) {
+            vacancies[i - 1] = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+            document.getElementById('vacancy' + i).innerText = vacancies[i - 1];
+        }
+
+        let currentShelterId = null;
+
+        function showForm(shelterId) {
+            currentShelterId = shelterId;
+            const shelterName = shelters[shelterId - 1];
+
+            // Show the reservation form and set up the fields
+            document.getElementById('reservationForm').style.display = 'block';
+            document.getElementById('reservationResult').innerHTML = '';
+
+            const formFields = document.getElementById('reservationFormFields');
+            formFields.innerHTML = `
+                <h4>For ${shelterName}</h4>
+                <p>Vacancies: <span id="currentVacancy">${vacancies[shelterId - 1]}</span></p>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" required>
+                <label for="age">Your Age:</label>
+                <input type="number" id="age" required>
+            `;
+        }
+
+        function submitReservation() {
+            const peopleCount = document.getElementById('peopleCount').value;
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+
+            if (peopleCount < 1 || peopleCount > 9 || !name || !age) {
+                alert('Please fill out all fields correctly.');
+                return;
+            }
+
+            if (vacancies[currentShelterId - 1] >= peopleCount) {
+                // Update vacancies
+                vacancies[currentShelterId - 1] -= peopleCount;
+                document.getElementById('vacancy' + currentShelterId).innerText = vacancies[currentShelterId - 1];
+
+                // Show confirmation and reset form
+                document.getElementById('reservationResult').innerHTML = `Reservation has been made for ${peopleCount} people at ${shelters[currentShelterId - 1]}.`;
+                alert(`Reservation confirmed for ${peopleCount} people at ${shelters[currentShelterId - 1]}.`);
+
+                // Hide the form after submission
+                document.getElementById('reservationForm').style.display = 'none';
+            } else {
+                alert('Not enough vacancies available.');
+            }
+        }
+    </script>
+
+</body>
+</html>
